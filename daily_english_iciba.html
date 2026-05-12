@@ -1,0 +1,140 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap');
+  #dse-wrap { padding: 1.5rem 0; font-family: var(--font-sans); }
+  #dse-card {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+  }
+  #dse-header {
+    background: #1a2a1a;
+    padding: 1.25rem 1.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  #dse-header-left { display: flex; align-items: center; gap: 10px; }
+  #dse-leaf { width: 20px; height: 20px; }
+  #dse-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; color: #c8e6c0; letter-spacing: 0.04em; }
+  #dse-date-badge { font-size: 11px; color: #7aad72; background: rgba(122,173,114,0.15); border-radius: 4px; padding: 3px 8px; }
+  #dse-body { padding: 1.5rem; }
+  #dse-img-wrap { margin-bottom: 1.25rem; border-radius: var(--border-radius-md); overflow: hidden; }
+  #dse-img { width: 100%; height: 180px; object-fit: cover; display: block; }
+  #dse-img-placeholder { width: 100%; height: 100px; background: var(--color-background-secondary); display: flex; align-items: center; justify-content: center; color: var(--color-text-tertiary); font-size: 13px; }
+  #dse-content { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 400; font-style: italic; color: var(--color-text-primary); line-height: 1.6; margin: 0 0 1rem; }
+  #dse-divider { width: 40px; height: 2px; background: #4a7c4a; margin-bottom: 1rem; border-radius: 1px; }
+  #dse-note { font-family: 'Source Serif 4', serif; font-size: 15px; font-weight: 300; color: var(--color-text-secondary); line-height: 1.75; margin: 0; }
+  #dse-footer { padding: 0.75rem 1.5rem; border-top: 0.5px solid var(--color-border-tertiary); display: flex; align-items: center; justify-content: space-between; background: var(--color-background-secondary); }
+  #dse-source { font-size: 11px; color: var(--color-text-tertiary); }
+  #dse-pick-wrap { display: flex; gap: 8px; align-items: center; }
+  #dse-dateinput { font-size: 12px; padding: 3px 6px; border-radius: 4px; border: 0.5px solid var(--color-border-secondary); background: var(--color-background-primary); color: var(--color-text-primary); }
+  #dse-btn { font-size: 12px; padding: 4px 10px; border-radius: 4px; cursor: pointer; background: #1a2a1a; color: #c8e6c0; border: none; }
+  #dse-btn:hover { background: #253a25; }
+  #dse-status { padding: 2rem 1.5rem; text-align: center; color: var(--color-text-secondary); font-size: 14px; }
+  .dse-spinner { display: inline-block; width: 18px; height: 18px; border: 2px solid var(--color-border-tertiary); border-top-color: #4a7c4a; border-radius: 50%; animation: spin 0.8s linear infinite; vertical-align: middle; margin-right: 8px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+
+<div id="dse-wrap">
+  <h2 class="sr-only">爱词霸每日英语句子获取工具</h2>
+  <div id="dse-card">
+    <div id="dse-header">
+      <div id="dse-header-left">
+        <svg id="dse-leaf" viewBox="0 0 20 20" fill="none">
+          <path d="M10 2C10 2 4 5 4 11C4 14.3 6.7 17 10 17C13.3 17 16 14.3 16 11C16 5 10 2 10 2Z" fill="#4a7c4a"/>
+          <path d="M10 17V11M10 11L6 7" stroke="#c8e6c0" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        <span id="dse-title">Daily English — 爱词霸每日一句</span>
+      </div>
+      <span id="dse-date-badge">iciba.com</span>
+    </div>
+
+    <div id="dse-status">
+      <span class="dse-spinner"></span>正在获取今日句子…
+    </div>
+    <div id="dse-body" style="display:none;">
+      <div id="dse-img-wrap" style="display:none;">
+        <img id="dse-img" alt="每日配图" />
+      </div>
+      <p id="dse-content"></p>
+      <div id="dse-divider"></div>
+      <p id="dse-note"></p>
+    </div>
+
+    <div id="dse-footer">
+      <span id="dse-source">数据来源：爱词霸</span>
+      <div id="dse-pick-wrap">
+        <input type="date" id="dse-dateinput" value="2020-04-22" />
+        <button id="dse-btn">查询</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  function fetchSentence(dateStr){
+    const status = document.getElementById('dse-status');
+    const body = document.getElementById('dse-body');
+    status.style.display = 'block';
+    status.innerHTML = '<span class="dse-spinner"></span>正在获取句子…';
+    body.style.display = 'none';
+
+    const cbName = 'icibaCb_' + Date.now();
+    const script = document.createElement('script');
+    let done = false;
+
+    window[cbName] = function(data){
+      done = true;
+      cleanup();
+      if(data && data.content){
+        document.getElementById('dse-content').textContent = data.content;
+        document.getElementById('dse-note').textContent = data.note || '';
+        const imgWrap = document.getElementById('dse-img-wrap');
+        const img = document.getElementById('dse-img');
+        if(data.fenxiang_img){
+          img.src = data.fenxiang_img;
+          imgWrap.style.display = 'block';
+          img.onerror = () => { imgWrap.style.display = 'none'; };
+        } else {
+          imgWrap.style.display = 'none';
+        }
+        status.style.display = 'none';
+        body.style.display = 'block';
+        document.getElementById('dse-date-badge').textContent = dateStr;
+      } else {
+        status.innerHTML = '未找到该日期的句子，请尝试其他日期。';
+      }
+    };
+
+    function cleanup(){
+      if(script.parentNode) script.parentNode.removeChild(script);
+      delete window[cbName];
+    }
+
+    const ts = Date.now();
+    script.src = `https://sentence.iciba.com/index.php?callback=${cbName}&c=dailysentence&m=getdetail&title=${dateStr}&_=${ts}`;
+    script.onerror = function(){
+      if(done) return;
+      cleanup();
+      status.innerHTML = '⚠ 获取失败：可能是网络限制或 CORS 问题。<br><small>建议通过服务器端代理请求该接口。</small>';
+    };
+
+    setTimeout(function(){
+      if(!done){
+        cleanup();
+        status.innerHTML = '⚠ 请求超时，该接口可能不支持跨域直接访问。<br><small>建议在后端服务器代理此请求后再提供给前端。</small>';
+      }
+    }, 6000);
+
+    document.head.appendChild(script);
+  }
+
+  document.getElementById('dse-btn').addEventListener('click', function(){
+    const d = document.getElementById('dse-dateinput').value;
+    if(d) fetchSentence(d);
+  });
+
+  fetchSentence('2020-04-22');
+})();
+</script>
