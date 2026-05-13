@@ -1,29 +1,29 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+本文档为 Claude Code (claude.ai/code) 在此代码库中工作提供指导。
 
-## Project Overview
+## 项目概述
 
-A collection of WordPress widgets — small, embeddable UI components that can be integrated into WordPress sites. Widgets are self-contained HTML/CSS/JavaScript files.
+WordPress 小部件集合 — 可嵌入 WordPress 网站的小型 UI 组件。每个小部件都是独立的 HTML/CSS/JavaScript 文件。
 
-## Architecture
+## 架构
 
-- **Widget structure**: Each widget is a standalone HTML file with inline CSS and JavaScript
-- **Styling**: Uses CSS custom properties (e.g., `var(--color-background-primary)`, `var(--border-radius-lg)`) to inherit WordPress theme styles
-- **Data fetching**: Widgets fetch data from external APIs via JSONP callbacks to avoid CORS issues
-- **No build step**: Widgets are vanilla HTML/CSS/JS — no compilation or bundling required
+- **小部件结构**: 每个小部件是独立的 HTML 文件，包含内联 CSS 和 JavaScript
+- **样式**: 使用 CSS 自定义属性（如 `var(--color-background-primary)`、`var(--border-radius-lg)`）继承 WordPress 主题样式
+- **数据获取**: 通过 JSONP 回调从外部 API 获取数据，避免 CORS 问题
+- **无需构建**: 小部件是纯 HTML/CSS/JS — 无需编译或打包
 
-## Existing Widgets
+## 现有小部件
 
 ### `daily_english_iciba.html`
-Displays daily English quotes from 爱词霸 (iciba.com). Features:
-- Date picker to query historical quotes
-- JSONP callback pattern for cross-origin requests
-- Responsive card layout with image and text content
-- API endpoint: `https://sentence.iciba.com/index.php?c=dailysentence&m=getdetail`
+显示爱词霸 (iciba.com) 的每日英语句子。功能：
+- 日期选择器查询历史句子
+- JSONP 回调模式处理跨域请求
+- 响应式卡片布局，包含图片和文本内容
+- API 端点：`https://sentence.iciba.com/index.php?c=dailysentence&m=getdetail`
 
-## Development Patterns
+## 开发模式
 
-- **JSONP for API calls**: Use callback pattern (`callback=icibaCb_&timestamp`) for external API requests
-- **Scoped IDs**: Prefix all IDs with unique identifier (e.g., `dse-` for Daily English) to avoid WordPress theme conflicts
-- **IIFE wrapper**: Wrap JavaScript in `(function(){ ... })();` to avoid global scope pollution
+- **JSONP 调用 API**: 使用回调模式（`callback=icibaCb_&timestamp`）请求外部 API
+- **作用域 ID**: 所有 ID 使用唯一前缀（如 `dse-` 表示 Daily English），避免与 WordPress 主题冲突
+- **IIFE 包装**: JavaScript 用 `(function(){ ... })();` 包装，避免全局作用域污染
