@@ -8,7 +8,7 @@ WordPress 小部件集合 — 可嵌入 WordPress 网站的小型 UI 组件。
 
 ## 小部件列表
 
-### 1. 每日英语句子 (`daily_english_iciba.html`)
+### 1. 每日英语句子 (`daily_english.html`)
 
 爱词霸每日英语句子展示小部件。
 

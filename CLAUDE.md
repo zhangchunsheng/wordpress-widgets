@@ -15,7 +15,7 @@ WordPress 小部件集合 — 可嵌入 WordPress 网站的小型 UI 组件。�
 
 ## 现有小部件
 
-### `daily_english_iciba.html`
+### `daily_english.html`
 显示爱词霸 (iciba.com) 的每日英语句子。功能：
 - 日期选择器查询历史句子
 - JSONP 回调模式处理跨域请求
