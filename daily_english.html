@@ -1,197 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>每日英语句子 - 爱词霸每日一句 | 烙馍网</title>
+  <meta name="description" content="每日英语句子，来自爱词霸的每日一句英语励志名言。精美的卡片设计，支持查询历史句子，适合嵌入博客、网站作为小部件展示。">
+  <meta name="keywords" content="每日英语，每日一句，爱词霸，英语名言，英语学习，英语句子，iciba,daily english">
+  <meta name="author" content="烙馍网">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.luomor.com/daily_english.html">
 
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap');
-  #dse-wrap { padding: 1rem 0; font-family: var(--font-sans); }
-  #dse-card {
-    background: linear-gradient(180deg, var(--color-background-primary) 0%, var(--color-background-secondary) 100%);
-    border: 1px solid var(--color-border-tertiary);
-    border-radius: var(--border-radius-lg);
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  }
-  #dse-header {
-    background: linear-gradient(135deg, #2d5a2d 0%, #1a3a1a 100%);
-    padding: 1rem 1.25rem;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  #dse-header-left { display: flex; align-items: center; gap: 10px; }
-  #dse-icon { width: 24px; height: 24px; }
-  #dse-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600; color: #ffffff; letter-spacing: 0.05em; }
-  #dse-date-badge {
-    font-size: 12px; font-weight: 500;
-    color: #ffffff;
-    background: rgba(255,255,255,0.2);
-    backdrop-filter: blur(4px);
-    border-radius: 12px;
-    padding: 4px 10px;
-  }
-  #dse-body { padding: 1.25rem; }
-  #dse-img-wrap {
-    margin-bottom: 1rem;
-    border-radius: var(--border-radius-md);
-    overflow: hidden;
-    position: relative;
-  }
-  #dse-img { width: 100%; height: 160px; object-fit: cover; display: block; }
-  #dse-content {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px; font-weight: 400; font-style: italic;
-    color: var(--color-text-primary);
-    line-height: 1.7;
-    margin: 0 0 0.75rem;
-    padding-left: 12px;
-    border-left: 3px solid #4a7c4a;
-  }
-  #dse-note {
-    font-family: 'Source Serif 4', serif;
-    font-size: 14px; font-weight: 300;
-    color: var(--color-text-secondary);
-    line-height: 1.7;
-    margin: 0;
-  }
-  #dse-footer {
-    padding: 0.75rem 1.25rem;
-    border-top: 1px solid var(--color-border-tertiary);
-    display: flex; align-items: center; justify-content: space-between;
-    background: rgba(74,124,74,0.05);
-  }
-  #dse-source { font-size: 11px; color: var(--color-text-tertiary); }
-  #dse-pick-wrap { display: flex; gap: 8px; align-items: center; }
-  #dse-dateinput {
-    font-size: 12px; padding: 5px 8px;
-    border-radius: 6px;
-    border: 1px solid var(--color-border-secondary);
-    background: var(--color-background-primary);
-    color: var(--color-text-primary);
-    cursor: pointer;
-  }
-  #dse-btn {
-    font-size: 12px; font-weight: 500;
-    padding: 5px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    background: linear-gradient(135deg, #3a6a3a 0%, #2d5a2d 100%);
-    color: #ffffff;
-    border: none;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-  }
-  #dse-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 3px 8px rgba(58,106,58,0.35);
-  }
-  #dse-btn:active { transform: translateY(0); }
-  #dse-status { padding: 2.5rem 1.5rem; text-align: center; color: var(--color-text-secondary); font-size: 14px; }
-  .dse-spinner { display: inline-block; width: 20px; height: 20px; border: 2.5px solid var(--color-border-tertiary); border-top-color: #4a7c4a; border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: middle; margin-right: 10px; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .dse-error { color: #b94a4a; font-size: 13px; }
-</style>
+  <!-- Open Graph 社交分享 -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="每日英语句子 - 爱词霸每日一句">
+  <meta property="og:description" content="精美英语句子卡片，每天一句励志英语，点亮你的学习时光。">
+  <meta property="og:url" content="https://www.luomor.com/daily_english.html">
+  <meta property="og:site_name" content="烙馍网 WordPress 小部件">
 
-<div id="dse-wrap">
-  <h2 class="sr-only">烙馍网每日英语句子</h2>
-  <div id="dse-card">
-    <div id="dse-header">
-      <div id="dse-header-left">
-        <svg id="dse-icon" viewBox="0 0 24 24" fill="none">
-          <path d="M12 3C12 3 5 7 5 13.5C5 17.5 8.1 21 12 21C15.9 21 19 17.5 19 13.5C19 7 12 3 12 3Z" fill="#7cb370"/>
-          <path d="M12 21V13M12 13L8 9" stroke="#c8e6c0" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-        <span id="dse-title">Daily English</span>
-      </div>
-      <span id="dse-date-badge">今日</span>
-    </div>
+  <!-- Twitter 卡片 -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="每日英语句子 - 爱词霸每日一句">
+  <meta name="twitter:description" content="每天一句励志英语，精美卡片设计，支持历史查询。">
 
-    <div id="dse-status">
-      <span class="dse-spinner"></span>正在获取今日句子…
-    </div>
-    <div id="dse-body" style="display:none;">
-      <div id="dse-img-wrap" style="display:none;">
-        <img id="dse-img" alt="每日配图" />
-      </div>
-      <p id="dse-content"></p>
-      <p id="dse-note"></p>
-    </div>
+  <!-- 结构化数据 Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "每日英语句子小部件",
+    "description": "展示爱词霸每日英语句子的小部件，支持日期查询历史句子",
+    "applicationCategory": "EducationalApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "CNY"
+    },
+    "featureList": "每日英语句子展示，历史句子查询，精美卡片设计，响应式布局"
+  }
+  </script>
 
-    <div id="dse-footer">
-      <div id="dse-pick-wrap">
-        <input type="date" id="dse-dateinput" />
-        <button id="dse-btn">查询</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-(function(){
-  const $ = (id) => document.getElementById(id);
-  const todayStr = new Date().toISOString().split('T')[0];
-  $('dse-dateinput').value = todayStr;
-
-  function fetchSentence(dateStr){
-    const status = $('dse-status');
-    const body = $('dse-body');
-    status.style.display = 'block';
-    status.innerHTML = '<span class="dse-spinner"></span>正在获取句子…';
-    status.className = '';
-    body.style.display = 'none';
-
-    const cbName = 'icibaCb_' + Date.now();
-    const script = document.createElement('script');
-    let done = false;
-
-    window[cbName] = function(data){
-      done = true;
-      cleanup();
-      if(data && data.content){
-        $('dse-content').textContent = data.content;
-        $('dse-note').textContent = data.note || '';
-        const imgWrap = $('dse-img-wrap');
-        const img = $('dse-img');
-        if(data.fenxiang_img){
-          img.src = data.fenxiang_img;
-          imgWrap.style.display = 'block';
-          img.onerror = () => { imgWrap.style.display = 'none'; };
-        } else {
-          imgWrap.style.display = 'none';
-        }
-        status.style.display = 'none';
-        body.style.display = 'block';
-        $('dse-date-badge').textContent = dateStr;
-      } else {
-        status.className = 'dse-error';
-        status.innerHTML = '未找到该日期的句子，请尝试其他日期。';
-      }
-    };
-
-    function cleanup(){
-      if(script.parentNode) script.parentNode.removeChild(script);
-      try { delete window[cbName]; } catch(e){ window[cbName] = undefined; }
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: #f5f5f5;
+      padding: 1rem;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+    #dse-wrap { padding: 1rem 0; font-family: var(--font-sans); max-width: 400px; width: 100%; }
+    #dse-card {
+      background: linear-gradient(180deg, var(--color-background-primary) 0%, var(--color-background-secondary) 100%);
+      background: #fff;
+      border: 1px solid var(--color-border-tertiary);
+      border-radius: var(--border-radius-lg, 12px);
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+    #dse-header {
+      background: linear-gradient(135deg, #2d5a2d 0%, #1a3a1a 100%);
+      padding: 1rem 1.25rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    #dse-header-left { display: flex; align-items: center; gap: 10px; }
+    #dse-icon { width: 24px; height: 24px; }
+    #dse-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600; color: #ffffff; letter-spacing: 0.05em; }
+    #dse-date-badge {
+      font-size: 12px; font-weight: 500;
+      color: #ffffff;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(4px);
+      border-radius: 12px;
+      padding: 4px 10px;
+    }
+    #dse-body { padding: 1.25rem; }
+    #dse-img-wrap {
+      margin-bottom: 1rem;
+      border-radius: var(--border-radius-md, 8px);
+      overflow: hidden;
+      position: relative;
+    }
+    #dse-img { width: 100%; height: 160px; object-fit: cover; display: block; }
+    #dse-content {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; font-weight: 400; font-style: italic;
+      color: #333;
+      line-height: 1.7;
+      margin: 0 0 0.75rem;
+      padding-left: 12px;
+      border-left: 3px solid #4a7c4a;
+    }
+    #dse-note {
+      font-family: 'Source Serif 4', serif;
+      font-size: 14px; font-weight: 300;
+      color: #666;
+      line-height: 1.7;
+      margin: 0;
+    }
+    #dse-footer {
+      padding: 0.75rem 1.25rem;
+      border-top: 1px solid #e0e0e0;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(74,124,74,0.05);
+    }
+    #dse-source { font-size: 11px; color: #999; }
+    #dse-pick-wrap { display: flex; gap: 8px; align-items: center; }
+    #dse-dateinput {
+      font-size: 12px; padding: 5px 8px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      background: #fff;
+      color: #333;
+      cursor: pointer;
+    }
+    #dse-btn {
+      font-size: 12px; font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      background: linear-gradient(135deg, #3a6a3a 0%, #2d5a2d 100%);
+      color: #ffffff;
+      border: none;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    #dse-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(58,106,58,0.35);
+    }
+    #dse-btn:active { transform: translateY(0); }
+    #dse-status { padding: 2.5rem 1.5rem; text-align: center; color: #666; font-size: 14px; }
+    .dse-spinner { display: inline-block; width: 20px; height: 20px; border: 2.5px solid #e0e0e0; border-top-color: #4a7c4a; border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: middle; margin-right: 10px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .dse-error { color: #b94a4a; font-size: 13px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+  </style>
+</head>
+<body>
+  <main id="dse-wrap" role="main">
+    <h1 class="sr-only">每日英语句子 - 爱词霸每日一句英语励志名言</h1>
+    <article id="dse-card" itemscope itemtype="https://schema.org/CreativeWork">
+      <header id="dse-header">
+        <div id="dse-header-left">
+          <svg id="dse-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3C12 3 5 7 5 13.5C5 17.5 8.1 21 12 21C15.9 21 19 17.5 19 13.5C19 7 12 3 12 3Z" fill="#7cb370"/>
+            <path d="M12 21V13M12 13L8 9" stroke="#c8e6c0" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span id="dse-title" itemprop="name">Daily English</span>
+        </div>
+        <time id="dse-date-badge" datetime="">今日</time>
+      </header>
 
-    const ts = Date.now();
-    script.src = `https://sentence.iciba.com/index.php?callback=${cbName}&c=dailysentence&m=getdetail&title=${dateStr}&_=${ts}`;
-    script.onerror = function(){
-      if(done) return;
-      cleanup();
-      status.className = 'dse-error';
-      status.innerHTML = '获取失败，请稍后重试。';
-    };
+      <div id="dse-status" aria-live="polite">
+        <span class="dse-spinner"></span>正在获取今日句子…
+      </div>
+      <div id="dse-body" style="display:none;">
+        <div id="dse-img-wrap" style="display:none;">
+          <img id="dse-img" alt="每日英语配图" itemprop="image" />
+        </div>
+        <blockquote id="dse-content" itemprop="description"></blockquote>
+        <p id="dse-note" itemprop="author"></p>
+      </div>
 
-    setTimeout(function(){
-      if(!done){
+      <footer id="dse-footer">
+        <span id="dse-source">数据来源：<a href="https://www.luomor.com/" target="_blank">烙馍网</a></span>
+        <div id="dse-pick-wrap">
+          <input type="date" id="dse-dateinput" aria-label="选择日期查询历史句子" />
+          <button id="dse-btn" type="button">查询</button>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <script>
+  (function(){
+    const $ = (id) => document.getElementById(id);
+    const todayStr = new Date().toISOString().split('T')[0];
+    $('dse-dateinput').value = todayStr;
+    $('dse-date-badge').datetime = todayStr;
+    $('dse-date-badge').textContent = todayStr;
+
+    function fetchSentence(dateStr){
+      const status = $('dse-status');
+      const body = $('dse-body');
+      status.style.display = 'block';
+      status.innerHTML = '<span class="dse-spinner"></span>正在获取句子…';
+      status.className = '';
+      body.style.display = 'none';
+
+      const cbName = 'icibaCb_' + Date.now();
+      const script = document.createElement('script');
+      let done = false;
+
+      window[cbName] = function(data){
+        done = true;
+        cleanup();
+        if(data && data.content){
+          $('dse-content').textContent = data.content;
+          $('dse-note').textContent = data.note || '';
+          const imgWrap = $('dse-img-wrap');
+          const img = $('dse-img');
+          if(data.fenxiang_img){
+            img.src = data.fenxiang_img;
+            imgWrap.style.display = 'block';
+            img.onerror = () => { imgWrap.style.display = 'none'; };
+          } else {
+            imgWrap.style.display = 'none';
+          }
+          status.style.display = 'none';
+          body.style.display = 'block';
+          $('dse-date-badge').textContent = dateStr;
+          $('dse-date-badge').datetime = dateStr;
+          // 更新页面 title 为当日句子前 20 字
+          const shortText = data.content.substring(0, 20) + (data.content.length > 20 ? '...' : '');
+          document.title = shortText + ' - 每日英语句子';
+        } else {
+          status.className = 'dse-error';
+          status.innerHTML = '未找到该日期的句子，请尝试其他日期。';
+        }
+      };
+
+      function cleanup(){
+        if(script.parentNode) script.parentNode.removeChild(script);
+        try { delete window[cbName]; } catch(e){ window[cbName] = undefined; }
+      }
+
+      const ts = Date.now();
+      script.src = `https://sentence.iciba.com/index.php?callback=${cbName}&c=dailysentence&m=getdetail&title=${dateStr}&_=${ts}`;
+      script.onerror = function(){
+        if(done) return;
         cleanup();
         status.className = 'dse-error';
-        status.innerHTML = '请求超时，请稍后重试。';
-      }
-    }, 6000);
+        status.innerHTML = '获取失败，请稍后重试。';
+      };
 
-    document.head.appendChild(script);
-  }
+      setTimeout(function(){
+        if(!done){
+          cleanup();
+          status.className = 'dse-error';
+          status.innerHTML = '请求超时，请稍后重试。';
+        }
+      }, 6000);
 
-  $('dse-btn').addEventListener('click', function(){
-    const d = $('dse-dateinput').value;
-    if(d) fetchSentence(d);
-  });
+      document.head.appendChild(script);
+    }
 
-  fetchSentence(todayStr);
-})();
-</script>
+    $('dse-btn').addEventListener('click', function(){
+      const d = $('dse-dateinput').value;
+      if(d) fetchSentence(d);
+    });
+
+    fetchSentence(todayStr);
+  })();
+  </script>
+</body>
+</html>

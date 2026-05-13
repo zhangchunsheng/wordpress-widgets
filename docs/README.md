@@ -8,4 +8,5 @@ claude
 写一个页面介绍使用iframe嵌入每日英语句子，可以在wordpress widget中使用以下代码
 <iframe width="280" height="300" src="https://www.luomor.com/daily_english.html" frameborder="0"></iframe>
 优化seo
+daily_english.html增加seo优化
 ```
