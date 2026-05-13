@@ -3,7 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>嵌入每日英语句子到 WordPress</title>
+  <title>如何在 WordPress 中嵌入每日英语句子小部件？| iframe 嵌入教程</title>
+  <meta name="description" content="详细教程：使用 iframe 将爱词霸每日英语句子嵌入 WordPress 侧边栏或小工具区域。提供代码示例、尺寸调整指南和效果预览。">
+  <meta name="keywords" content="WordPress 小部件，每日英语句子，爱词霸，iframe 嵌入，WordPress 侧边栏，英语句子小工具，WordPress 教程">
+  <meta name="author" content="Luomor WordPress Widgets">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.luomor.com/embed_guide.html">
+
+  <!-- Open Graph 社交分享 -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="如何在 WordPress 中嵌入每日英语句子小部件？">
+  <meta property="og:description" content="使用 iframe 将爱词霸每日英语句子嵌入 WordPress 侧边栏，5 分钟快速上手教程。">
+  <meta property="og:url" content="https://www.luomor.com/embed_guide.html">
+  <meta property="og:site_name" content="Luomor WordPress Widgets">
+
+  <!-- Twitter 卡片 -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="WordPress 嵌入每日英语句子教程">
+  <meta name="twitter:description" content="使用 iframe 将爱词霸每日英语句子嵌入 WordPress 侧边栏，5 分钟快速上手。">
+
+  <!-- 结构化数据 Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "在 WordPress 中嵌入每日英语句子小部件",
+    "description": "使用 iframe 方式将爱词霸每日英语句子嵌入 WordPress 侧边栏或小工具区域",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://www.luomor.com/embed_guide-preview.png"
+    },
+    "totalTime": "PT5M",
+    "supply": [
+      {
+        "@type": "HowToSupply",
+        "name": "WordPress 网站"
+      },
+      {
+        "@type": "HowToSupply",
+        "name": "iframe 嵌入代码"
+      }
+    ],
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "登录 WordPress 后台",
+        "text": "进入您的 WordPress 网站管理面板"
+      },
+      {
+        "@type": "HowToStep",
+        "name": "找到小工具设置",
+        "text": "导航到 外观 → 小工具，找到侧边栏或页脚小工具区域"
+      },
+      {
+        "@type": "HowToStep",
+        "name": "添加自定义 HTML 小工具",
+        "text": "点击 + 号添加新模块，搜索「自定义 HTML」并添加"
+      },
+      {
+        "@type": "HowToStep",
+        "name": "粘贴 iframe 代码",
+        "text": "将提供的 iframe 代码粘贴到 HTML 内容框中"
+      },
+      {
+        "@type": "HowToStep",
+        "name": "保存设置",
+        "text": "点击保存按钮，完成嵌入"
+      }
+    ]
+  }
+  </script>
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -120,16 +190,32 @@
 </head>
 <body>
   <div class="container">
-    <h1>嵌入每日英语句子到 WordPress</h1>
-    <p class="subtitle">使用 iframe 方式在 WordPress 侧边栏或小工具区域展示爱词霸每日英语句子</p>
+    <header>
+      <h1>如何在 WordPress 中嵌入每日英语句子小部件？</h1>
+      <p class="subtitle">使用 iframe 方式在 WordPress 侧边栏或小工具区域展示爱词霸每日英语句子，5 分钟快速上手</p>
+    </header>
 
-    <h2>快速开始</h2>
-    <p>复制以下代码，粘贴到 WordPress 的「自定义 HTML」小工具中：</p>
+    <nav aria-label="目录">
+      <ul style="list-style:none;padding:0;margin:1.5rem 0;display:flex;flex-wrap:wrap;gap:0.5rem;font-size:13px;">
+        <li><a href="#quick-start" style="color:#2d5a2d;text-decoration:none;padding:4px 8px;background:#f0f7f0;border-radius:4px;">快速开始</a></li>
+        <li><a href="#steps" style="color:#2d5a2d;text-decoration:none;padding:4px 8px;background:#f0f7f0;border-radius:4px;">添加步骤</a></li>
+        <li><a href="#preview" style="color:#2d5a2d;text-decoration:none;padding:4px 8px;background:#f0f7f0;border-radius:4px;">效果预览</a></li>
+        <li><a href="#sizes" style="color:#2d5a2d;text-decoration:none;padding:4px 8px;background:#f0f7f0;border-radius:4px;">尺寸调整</a></li>
+        <li><a href="#faq" style="color:#2d5a2d;text-decoration:none;padding:4px 8px;background:#f0f7f0;border-radius:4px;">常见问题</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <section id="quick-start">
+        <h2>快速开始</h2>
+        <p>复制以下代码，粘贴到 WordPress 的「自定义 HTML」小工具中即可显示每日英语句子：</p>
     <div class="code-block">
       <code>&lt;iframe width="280" height="300" src="https://www.luomor.com/daily_english.html" frameborder="0"&gt;&lt;/iframe&gt;</code>
     </div>
+      </section>
 
-    <h2>在 WordPress 中添加步骤</h2>
+      <section id="steps">
+        <h2>在 WordPress 中添加步骤</h2>
     <ol class="steps">
       <li><strong>登录 WordPress 后台</strong> — 进入您的网站管理面板</li>
       <li><strong>外观 → 小工具</strong> — 找到侧边栏或页脚小工具区域</li>
@@ -137,13 +223,17 @@
       <li><strong>粘贴代码</strong> — 将上方 iframe 代码粘贴到内容框</li>
       <li><strong>保存</strong> — 点击「保存」按钮，完成！</li>
     </ol>
+      </section>
 
-    <h2>效果预览</h2>
+      <section id="preview">
+        <h2>效果预览</h2>
     <div class="preview-box">
-      <iframe width="280" height="300" src="daily_english.html" frameborder="0"></iframe>
+      <iframe width="280" height="300" src="daily_english.html" frameborder="0" title="每日英语句子小部件预览"></iframe>
     </div>
+      </section>
 
-    <h2>尺寸调整</h2>
+      <section id="sizes">
+        <h2>尺寸调整</h2>
     <p>根据您的侧边栏宽度，可以调整 iframe 的尺寸：</p>
     <table>
       <tr>
@@ -186,14 +276,49 @@
     <div class="code-block">
       <code>&lt;iframe style="width:100%;min-width:240px;height:300px" src="https://www.luomor.com/daily_english.html" frameborder="0"&gt;&lt;/iframe&gt;</code>
     </div>
+      </section>
 
-    <h2>注意事项</h2>
-    <ul style="padding-left: 1.25rem; color: #555;">
+      <section id="faq">
+        <h2>常见问题</h2>
+    <div itemscope itemtype="https://schema.org/FAQPage">
+      <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">为什么 iframe 不显示？</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">可能的原因：1) WordPress 主题限制了 iframe 使用，请检查主题安全设置；2) 浏览器插件拦截了 iframe，尝试禁用广告拦截器；3) 服务器配置问题，联系主机服务商。</p>
+        </div>
+      </div>
+      <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">如何调整 iframe 大小？</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">修改 iframe 标签中的 width 和 height 属性值，例如 <code>width="320" height="280"</code>。建议使用 <code>style="width:100%"</code> 实现自适应宽度。</p>
+        </div>
+      </div>
+      <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">可以自定义小部件样式吗？</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">可以下载 HTML 源文件后自行修改 CSS 样式，然后托管到您自己的服务器上。修改后的版本可以添加自定义配色、字体等。</p>
+        </div>
+      </div>
+      <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">小部件数据如何更新？</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">小部件通过 API 实时获取爱词霸每日英语句子，每天自动更新，无需手动刷新。历史句子可通过日期选择器查询。</p>
+        </div>
+      </div>
+    </div>
+
+    <ul style="padding-left: 1.25rem; color: #555; margin-top:1.5rem;">
       <li>确保您的 WordPress 主题允许在小工具中使用 iframe（大多数主题都支持）</li>
       <li>如果 iframe 不显示，检查主题是否有限制 iframe 的安全设置</li>
       <li>建议在小工具标题中不要重复「每日英语」等文字，保持简洁</li>
       <li>如需修改样式，请下载 HTML 文件后自行托管</li>
     </ul>
+      </section>
+    </main>
   </div>
+  <footer style="text-align:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid #e0e0e0;font-size:13px;color:#666;">
+    <p>本文最后更新：<time datetime="2026-05-13">2026 年 5 月 13 日</time></p>
+    <p style="margin-top:0.5rem;">&copy; 2026 Luomor WordPress Widgets. All rights reserved.</p>
+  </footer>
 </body>
 </html>
