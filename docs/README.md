@@ -9,4 +9,6 @@ claude
 <iframe width="280" height="300" src="https://www.luomor.com/daily_english.html" frameborder="0"></iframe>
 优化seo
 daily_english.html增加seo优化
+
+代码更新了，更新claude.md
 ```
